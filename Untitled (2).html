@@ -1,0 +1,341 @@
+<html>
+<head>
+  <title>
+    People:
+  </title>
+</head>
+<style>
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  font-family: helvetica;
+  font-size: 14px;
+  width: 120px;
+  background-color: #3A3A3A;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 10px 10px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  left: 140%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+div.scroll {
+  margin:4px, 4px;
+  padding:4px;
+  width: 300px;
+  height: 750px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align:justify;
+}
+
+div.scroll2 {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align:justify;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content */
+.modal-content {
+  background: url('https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/af/Fancy_Oak.png/revision/latest/scale-to-width-down/250?cb=20210709024818');
+  background-size:100% 100%;
+  background-color: #ffffff;
+  margin: auto;
+  border-radius: 30px;
+  width: 500px;
+  height: 600px;
+}
+
+.close {
+  color: #5e5e5e;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+</style>
+
+<body style="background-image: url('https://preview.redd.it/jpau45dtajt31.png?auto=webp&s=c6da380d506135fb6ded5fc4705abbd60ed37eeb');  background-size: cover;">
+<div>
+  <div style="padding-top: 50px;"></div>
+
+<center>
+  <div id="openScience" class="modal">
+    <div class="modal-content">
+      <div style="background-color: rgba(255,255,255,0.4); border-radius: 30px; width: 100%; height:100%; margin:auto;">
+      <span style="font-family:helvetica; padding: 20px;" id="close" class="close">X</span>
+      <table style="width:80%;">
+        <tr>
+        <td align="center">
+          test1
+        </td>
+        <td align="center">
+          test2
+        </td>
+        <tr>
+      </table>
+      </div>
+    </div>
+  </div>
+<table>
+<td>
+<div class="scroll">
+  <div>
+    <span style="background-color: white; padding: 5 5 5 5; font-family: Helvetica; font-size: 20;">Help me repopulate.<br></span>
+    <div>
+      <img src="https://media.istockphoto.com/vectors/cartoon-stork-carrying-baby-vector-id604831356" width=150px; height=150px; onclick="addToScore(1)">
+      <br><br>
+    </div>
+  </div>
+
+  <div>
+    <span style="background-color: white; padding: 5 5 5 5; font-family: Helvetica; font-size: 20;">House (costs <span id="houseCostId">10</span>)<br></span>
+    <div class="tooltip">
+    <img src="https://image.shutterstock.com/image-vector/old-cozy-rural-house-vector-260nw-1722002524.jpg" width=150px; height=150px; onclick="buyHouse()">
+      <span class="tooltiptext">
+        +1 person per click.
+      </span>
+    </div>
+  </div>
+
+  <br>
+    <div>
+      <span style="background-color: white; padding: 5 5 5 5; font-family: Helvetica; font-size: 20;">Daycare (costs <span id="cursorCost">10</span>)<br></span>
+      <div  class="tooltip">
+      <img src="https://media.istockphoto.com/vectors/kids-playground-with-slides-and-tube-cartoon-vector-illustration-vector-id1263037063" width=150px; height=150px; onclick="buyCursor()">
+      <span class="tooltiptext">
+        +1 person per second.
+      </span>
+    </div>
+    </div>
+
+    <br>
+      <div id="revealFarm" style="display:none;">
+        <span style="background-color: white; padding: 5 5 5 5; font-family: Helvetica; font-size: 20;">Farm (costs <span id="wheatFarmCost">200</span>)<br></span>
+        <div  class="tooltip">
+        <img src="https://cdn.firstsportz.com/wp-content/uploads/2021/06/24014625/Bread-in-Minecraft-3-1024x576.jpg" width=150px; height=150px; onclick="buyWheatFarm()">
+        <span class="tooltiptext">
+          +3 people per second. Civilization!
+        </span>
+      </div>
+      </div>
+  </div>
+</td>
+
+<td>
+  <div style="width:20px;">
+  </div>
+</td>
+
+<td valign="top" style="font-family: Helvetica; font-size: 20; padding-top:20%;">
+  <div style="background-color: white; padding: 10 10 10 10; width: 200px;">
+    <span id="scored" style="text-align: center; font-size: 40;">
+      0
+    </span>
+    <span style="text-align: center; font-size: 35;">People</span>
+    <br>
+  <div id="revealPPS" style="display:none;" class="tooltip">
+    <span id="peoplePerSec" style="text-align: center; font-size:20;">
+      0
+    </span>
+    <span style="text-align: center; font-size:20;">PPS</span>
+    <span class="tooltiptext">People per second.</span>
+  </div>
+  </div>
+
+    <br><br>
+  <div class="scroll2">
+    <div style="background-color: white; padding: 10 10 10 10; width: 200px;">
+    Homes:
+    <span id="multiplied" style="text-align: center;">
+      1
+    </span>
+    <br>
+    Daycares:
+    <span id="cursors" style="text-align: center;">
+      0
+    </span>
+    <br>
+    <div id="revealFarmsCount" style="display:none;">
+      Farms:
+      <span id="wheatFarms" style="text-align: center;">
+        0
+      </span>
+    </div>
+  </div>
+</div>
+<div>
+  <center>
+      <div class="tooltip">
+      <button id="openScienceButton" style="background-color:#76a7b5; font-family:helvetica; padding: 10 10 10 10; border-radius:10px; font-size:20px; color:#ffffff">Science Tree</button>
+      <span class="tooltiptext">
+        Research reproductivity.
+      </span>
+    </div>
+  </center>
+</div>
+</td>
+</table>
+
+</center>
+
+<script>
+  var score = 20000;
+  var peoplePerSec = 0;
+
+  var cursors = 0;
+  var cursorCost = 10;
+  var cursorValue = 1;
+  var cursorCostMultiplier = 0.2;
+
+  var wheatFarms = 0;
+  var wheatFarmCost = 200;
+  var wheatFarmValue = 3;
+  var wheatFarmCostMultiplier = 0.29;
+
+  var houseCost = 10;
+  var houseMultiplier = 0.1
+  var multiplier = 1;
+
+  var unlockedScience = 0;
+
+  function addToScore(input){
+    score = score + (input * multiplier);
+    document.getElementById("scored").innerHTML = numberWithCommas(roundNumber(score));
+    document.title = ("People: ") + numberWithCommas(roundNumber(score));
+  }
+</script>
+
+<script>
+//Buy a house, which increases the multiplier.
+  function buyHouse(){
+    if (score >= houseCost){
+      score = score - houseCost;
+      multiplier = multiplier + 1;
+      houseCost = Math.round(houseCost * (1 + houseMultiplier));
+      document.getElementById("scored").innerHTML = numberWithCommas(roundNumber(score));
+      document.getElementById("multiplied").innerHTML = multiplier;
+      document.getElementById("houseCostId").innerHTML = houseCost;
+    } else {
+      alert("Can't!")
+    }
+  }
+
+  function buyCursor(){
+    if (score >= cursorCost){
+      score = score - cursorCost;
+      cursorCost = Math.round(cursorCost * (1 + cursorCostMultiplier));
+      document.getElementById("cursorCost").innerHTML = Math.round(cursorCost);
+      cursors = cursors + 1;
+      peoplePerSec++;
+      document.getElementById("scored").innerHTML = numberWithCommas(roundNumber(score));
+      document.getElementById("cursors").innerHTML = cursors;
+    } else {
+      alert("Can't!")
+    }
+    if (cursors >= 3){
+      revealElement("revealPPS");
+      revealElement("revealFarm");
+      revealElement("revealFarmsCount");
+    }
+  }
+
+  function buyWheatFarm(){
+    if ((score >= wheatFarmCost) && (cursors>0)){
+      score = score - wheatFarmCost;
+      wheatFarmCost = Math.round(wheatFarmCost * (1 + wheatFarmCostMultiplier));
+      document.getElementById("wheatFarmCost").innerHTML = Math.round(wheatFarmCost);
+      wheatFarms = wheatFarms + 1;
+      peoplePerSec = peoplePerSec + wheatFarmValue;
+      document.getElementById("scored").innerHTML = numberWithCommas(roundNumber(score));
+      document.getElementById("wheatFarms").innerHTML = wheatFarms;
+    } else {
+      alert("Can't!")
+    }
+  }
+
+  function scienceKamaSutra(){
+
+  }
+
+
+
+  setInterval(function(){
+    score = score + peoplePerSec/50;
+    var roundedScore = Math.round(score);
+    document.getElementById("scored").innerHTML = numberWithCommas(roundedScore);
+    var roundedPPS = Math.round(peoplePerSec);
+    document.getElementById("peoplePerSec").innerHTML = numberWithCommas(roundedPPS);
+  }, 20);
+
+//Formatting and UI!
+
+  var modalName = document.getElementById("openScience");
+  var btn = document.getElementById("openScienceButton");
+  var span = document.getElementById("close");
+
+  btn.onclick = function(){
+    modalName.style.display="block";
+  }
+
+  span.onclick = function(){
+    modalName.style.display="none";
+  }
+
+  window.onclick = function(event){
+    if (event.target == modalName){
+      modalName.style.display = "none";
+    }
+ }
+
+  function roundNumber(x){
+    var x = Math.round(x);
+    return x;
+  }
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function revealElement(name) {
+    var x = document.getElementById(name);
+    x.style.display = "block";
+  }
+</script>
+
+</div>
+</body>
+</html>
